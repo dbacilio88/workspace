@@ -1,0 +1,31 @@
+= Java Fundamental
+Christian Bacilio <author@asciidoctor.org>
+:revnumber: v1.0.0
+:revdate: 01.02.2025
+:revremark: Java
+:description: If you have a very long line of text \
+that you need to substitute regularly in a document
+:app-name: pass:quotes[MyApp^2^]
+:author: cbaciliod
+:email: dbacilio88@outlook.es
+:keywords: documentation, java
+:organization: cbaciliod
+:doctype: book
+:experimental:
+:reproducible:
+:icons: font
+:source-highlighter: coderay
+:listing-caption: Listing
+:sectnums:
+:toc:
+:toclevels: 3
+:sourcedir: {docdir}
+ifndef::imagesdir[:imagesdir: images]
+ifdef::backend-pdf[]
+:pdf-themesdir: {sourcedir}/theme
+:pdf-theme: java
+:title-logo-image: image:{sourcedir}/images/logo.png[pdfwidth=4.25in,align=center]
+:source-highlighter: rouge
+endif::[]
+
+include::herencia/_index.adoc[]

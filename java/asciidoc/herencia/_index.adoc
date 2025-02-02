@@ -1,0 +1,59 @@
+ifndef::imagesdir[:imagesdir: ../images]
+
+== HERENCIA
+
+=== Introducción
+
+En este capítulo continuamos nuestra explicación de la programación orientada a objetos (POO) mediante la introducción de la herencia, en la que se crea una nueva clase al adquirir los miembros de una existente, y se mejora con nuevas capacidades o modificando las capacidades ya existentes.
+
+Una subclase puede agregar sus propios campos y métodos.
+Por lo tanto, una subclase es más específica que su superclase y representa a un grupo más especializado de objetos.
+La subclase exhibe los comportamientos de su superclase y puede modificarlos, de modo que operen en forma apropiada para la subclase.
+
+[NOTE]
+====
+- Es por ello que a la herencia se le conoce algunas veces como *especialización*.
+
+- Este lenguaje solo soporta la _herencia simple_,
+====
+
+=== Superclases y subclases
+
+A menudo, un objeto de una clase también es un objeto de otra clase, las superclases tienden a ser *más generales*, y las subclases *más específicas*.
+
+=== Miembros protected
+
+Los miembros `public`
+de una clase son accesibles en cualquier parte en donde el programa tenga una referencia a un objeto de esa clase, o una de sus subclases.
+Los miembros `private` de una clase son accesibles solo dentro de la misma clase.
+En esta sección presentaremos el modificador de acceso protected.
+El uso del acceso protected ofrece un nivel intermedio de acceso entre `public` y `private`.
+Los miembros `protected` de una superclase pueden ser utilizados por los miembros de esa superclase, por los de sus subclases y por los de otras clases en el mismo paquete; es decir, los miembros protected también tienen acceso a nivel de paquete.
+
+Todos los miembros `public` y `protected` de una superclase conservan su modificador de acceso original cuando se convierten en miembros de la subclase (por ejemplo, los miembros `public` de la superclase se convierten en miembros `public` de la subclase, y los miembros `protected` de la superclase se vuelven miembros `protected` de la subclase).
+Los miembros `private` de una superclase no pueden utilizarse fuera de la propia clase.
+En cambio, están ocultos en sus subclases y se pueden utilizar solo a través de los métodos `public` o `protected` heredados de la superclase.
+
+=== Relación entre las superclases y las subclases
+
+- Una subclase no puede acceder a los miembros `private` de su superclase, pero puede acceder a los miembros no `private`.
+- Una subclase puede invocar a un constructor de su superclase mediante el uso de la palabra clave `super`, seguida de un conjunto de paréntesis que contienen los argumentos del constructor de la superclase.
+Esto debe aparecer como la primera instrucción en el cuerpo del constructor de la subclase.
+- El método de una superclase puede sobrescribirse en una subclase para declarar una implementación apropiada para la subclase.
+- La anotación *_@Override_* indica que un método debe sobrescribir al método de una superclase.
+- El método toString no recibe argumentos y devuelve un objeto String.
+- Por lo general, una subclase sobrescribe el método toString de la clase Object.
+
+[NOTE]
+====
+Cuando el compilador encuentra un método declarado con _@Override_, compara la firma de ese método con las firmas del método de la superclase.
+Si no hay una coincidencia exacta, el compilador emite un mensaje de error, del tipo _el método no sobrescribe o implementa un método a partir de un ``supertipo``_
+====
+
+=== Los constructores en las subclases
+
+La primera tarea de cualquier constructor de subclase es llamar al constructor de su superclase directa, para asegurar que se inicialicen las variables de instancia heredadas de la superclase.
+
+=== La clase Object
+
+Como vimos al principio en este capítulo, todas las clases en Java heredan, ya sea en forma directa o indirecta de la clase Object (paquete java.lang), por lo que todas las demás clases heredan sus 11 métodos (algunos de los cuales están sobrecargados).
