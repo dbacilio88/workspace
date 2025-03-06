@@ -1,0 +1,36 @@
+server:
+  port: ${API_SERVER_PORT:8000}
+
+
+
+spring:
+  banner:
+    location: classpath:banner.txt
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+
+            client-id: spring-project-client-id
+            client-secret: leTLboPJ8YR5NNDLvpwSyVF9ezU1Nn7v
+            scope: openid
+            authorization-grant-type: authorization_code
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/ck-localhost
+            user-name-attribute: preferred_username
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/ck-localhost
+
+logging:
+  level:
+    org:
+      springframework: debug
+
+
+keycloak:
+  realm: ck-localhost
+  resource: spring-project-client-id
+  auth-server-url: http://localhost:8080/realms/ck-localhost

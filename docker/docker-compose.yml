@@ -1,0 +1,44 @@
+services:
+
+  nodejs:
+    hostname: localhost
+    user: root
+    container_name: nodejs
+    image: node:22-alpine
+
+  postgres:
+    hostname: localhost
+    user: root
+    container_name: postgres-database
+    ports:
+      - "5432:5432"
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_USER: root
+    volumes:
+      - ./tmp/latest:/var/lib/postgresql/data
+    networks:
+      - net-local
+
+  key-cloak:
+    hostname: localhost
+    image: quay.io/keycloak/keycloak:26.1.3
+    #user: root
+    container_name: keycloak
+    command:
+      - start-dev
+    environment:
+      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
+    ports:
+      - "8080:8080"
+    networks:
+      - net-local
+    restart: unless-stopped
+
+networks:
+  net-local:
+    driver: bridge
+    name: net-local

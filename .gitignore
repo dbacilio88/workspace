@@ -43,6 +43,13 @@
 # .idea/modules
 # *.iml
 # *.ipr
+# components and sub modules
+**/.idea/compiler.xml
+**/.idea/*.iml
+**/.idea/vcs.xml
+**/.idea/encodings.xml
+**/.idea/.gitignore
+
 
 # CMake
 cmake-build-*/
@@ -87,6 +94,9 @@ fabric.properties
 # modules.xml
 # .idea/misc.xml
 # *.ipr
+
+# components and sub modules
+**/.idea/misc.xml
 
 # Sonarlint plugin
 # https://plugins.jetbrains.com/plugin/7973-sonarlint
@@ -140,7 +150,8 @@ fabric.properties
 # .idea/modules
 # *.iml
 # *.ipr
-
+# components and sub modules
+**/.idea/jarRepositories.xml
 # CMake
 
 # Mongo Explorer plugin
