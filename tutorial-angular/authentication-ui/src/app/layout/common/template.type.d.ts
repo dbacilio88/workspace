@@ -1,0 +1,2 @@
+export type Template =
+  | 'basic';

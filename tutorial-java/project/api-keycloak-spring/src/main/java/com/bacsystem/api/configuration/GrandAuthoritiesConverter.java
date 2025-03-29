@@ -1,15 +1,24 @@
 package com.bacsystem.api.configuration;
 
+import com.nimbusds.jwt.JWTClaimNames;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.lang.NonNull;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtClaimNames;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * <b>GrandAuthoritiesConverter</b>
@@ -29,29 +38,56 @@ import java.util.stream.Collectors;
 
 
 @Log4j2
-@SuppressWarnings("uncheked")
-public class GrandAuthoritiesConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
+@Component
+public class GrandAuthoritiesConverter implements Converter<Jwt, AbstractAuthenticationToken> {
+
+    private final JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+    private final String principalAttributeName = "preferred_username";
+    private final String resourceId = "spring-project-client-id";
+
 
     @Override
-    public Collection<GrantedAuthority> convert(Jwt source) {
-        log.info("loading convert Jwt  [{}]", source);
+    public AbstractAuthenticationToken convert(@NonNull Jwt jwt) {
+        var authorities = Stream.concat(jwtGrantedAuthoritiesConverter
+                        .convert(jwt)
+                        .stream(),
+                extractResourceRoles(jwt)
+                        .stream()
+        ).collect(Collectors.toSet());
 
-        // capture realm_access
-        var mapRealmAccess = source.getClaimAsMap("realm_access");
+        return new JwtAuthenticationToken(
+                jwt,
+                authorities,
+                getPrincipalClaimName(jwt)
+        );
+    }
 
-        if (Objects.nonNull(mapRealmAccess)) {
-            List<String> listRoles = (List<String>) mapRealmAccess.get("roles");
-            log.info("loading roles [{}]", listRoles);
-            // capture roles
-            return listRoles.stream()
-                    .map(role -> {
-                        return new SimpleGrantedAuthority("ROLE_" + role);
-                    })
-                    .collect(Collectors.toList());
+    private String getPrincipalClaimName(Jwt jwt) {
+        String claimName = JwtClaimNames.SUB;
+        if (principalAttributeName != null) {
+            claimName = principalAttributeName;
+        }
+        return jwt.getClaim(claimName);
+    }
+
+    private Collection<? extends GrantedAuthority> extractResourceRoles(Jwt jwt) {
+        Map<String, Object> resourceAccess;
+        Map<String, Object> resources;
+        Collection<String> resourceRoles;
+        if (jwt.getClaim("resource_access") == null) {
+            return Set.of();
+        }
+        resourceAccess = jwt.getClaim("resource_access");
+        if (resourceAccess.get(resourceId) == null) {
+            return Set.of();
         }
 
+        resources = (Map<String, Object>) resourceAccess.get(resourceId);
+        resourceRoles = (Collection<String>) resources.get("roles");
 
-        log.info("loaded convert Jwt  [{}]", source);
-        return List.of();
+        return resourceRoles
+                .stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+                .collect(Collectors.toSet());
     }
 }
