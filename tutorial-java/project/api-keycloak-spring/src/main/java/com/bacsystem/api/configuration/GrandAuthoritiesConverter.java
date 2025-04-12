@@ -1,24 +1,5 @@
 package com.bacsystem.api.configuration;
 
-import com.nimbusds.jwt.JWTClaimNames;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.lang.NonNull;
-import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.security.oauth2.jwt.JwtClaimNames;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
-import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
-import org.springframework.stereotype.Component;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * <b>GrandAuthoritiesConverter</b>
@@ -36,7 +17,7 @@ import java.util.stream.Stream;
  * @since 3/5/2025
  */
 
-
+/*
 @Log4j2
 @Component
 public class GrandAuthoritiesConverter implements Converter<Jwt, AbstractAuthenticationToken> {
@@ -91,3 +72,5 @@ public class GrandAuthoritiesConverter implements Converter<Jwt, AbstractAuthent
                 .collect(Collectors.toSet());
     }
 }
+
+ */

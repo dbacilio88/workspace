@@ -1,0 +1,27 @@
+server:
+  port: ${SERVER_PORT:8001}
+
+spring:
+  application:
+    name: api-microservices-configuration
+    version: 1.0.0
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/dbacilio88/micoservices-configuration
+          search-paths: tenant-1
+          default-label: master
+          skip-ssl-validation: true
+          timeout: 4
+
+management:
+  endpoint:
+    env:
+      post:
+        enabled: true
+
+logging:
+  level:
+    org.springframework.cloud: debug
+

@@ -25,9 +25,23 @@
         </developer>
     </developers>
 
+    <properties>
+        <java.11.version>11</java.11.version>
+        <java.17.version>17</java.17.version>
+        <java.21.version>21</java.21.version>
+    </properties>
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>2024.0.1</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -41,6 +55,7 @@
                 <artifactId>lombok</artifactId>
                 <version>1.18.36</version>
             </dependency>
+
 
         </dependencies>
     </dependencyManagement>
@@ -83,9 +98,21 @@
         <profile>
             <id>jdk-11-spring-2.7.18</id>
             <properties>
-                <java.version>11</java.version>
-                <maven.compiler.source>11</maven.compiler.source>
-                <maven.compiler.target>11</maven.compiler.target>
+                <java.version>${java.11.version}</java.version>
+                <maven.compiler.source>${java.11.version}</maven.compiler.source>
+                <maven.compiler.target>${java.11.version}</maven.compiler.target>
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                <spring-boot.version>2.7.18</spring-boot.version>
+                <lombok.version>1.18.36</lombok.version>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>jdk-17-spring-2.7.18</id>
+            <properties>
+                <java.version>${java.17.version}</java.version>
+                <maven.compiler.source>${java.17.version}</maven.compiler.source>
+                <maven.compiler.target>${java.17.version}</maven.compiler.target>
                 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
                 <spring-boot.version>2.7.18</spring-boot.version>
                 <lombok.version>1.18.36</lombok.version>
@@ -95,9 +122,9 @@
         <profile>
             <id>jdk-21-spring-3.4.0</id>
             <properties>
-                <java.version>21</java.version>
-                <maven.compiler.source>21</maven.compiler.source>
-                <maven.compiler.target>21</maven.compiler.target>
+                <java.version>${java.21.version}</java.version>
+                <maven.compiler.source>${java.21.version}</maven.compiler.source>
+                <maven.compiler.target>${java.21.version}</maven.compiler.target>
                 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
                 <spring-boot.version>3.4.0</spring-boot.version>
                 <lombok.version>1.18.36</lombok.version>

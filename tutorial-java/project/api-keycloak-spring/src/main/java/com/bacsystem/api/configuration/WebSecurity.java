@@ -1,20 +1,5 @@
 package com.bacsystem.api.configuration;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.session.SessionRegistryImpl;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
-import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
-
-import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
-
 /**
  * <b>WebSecurity</b>
  * <p>
@@ -30,7 +15,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
  * @author dbacilio88@outllok.es
  * @since 3/5/2025
  */
-
+/*
 @Log4j2
 @Configuration
 @EnableWebSecurity
@@ -62,3 +47,5 @@ public class WebSecurity {
         return http.build();
     }
 }
+
+ */
