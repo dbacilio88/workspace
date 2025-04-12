@@ -1,46 +1,28 @@
-server:
-  port: ${API_SERVER_PORT:8002}
-
-
 spring:
   config:
     import: optional:configserver:http://localhost:8001
   cloud:
     config:
-      profile: default
+      name: tenant-1
+      #profile: dev
+      #label: master
+      fail-fast: false
+      enabled: false
+  datasource:
+    driver-class-name: org.h2.Driver
+    username: 'sa'
+    url: 'jdbc:h2:mem:db'
+    password: ''
+    name: 'tenant-1'
 
-    #uri: http://localhost:8001
-  banner:
-    location: classpath:banner.txt
-  #security:
-
-    #oauth2:
-      #client:
-      #  registration:
-      #    keycloak:
-      #      client-id: spring-project-client-id
-      #      client-secret: HRhdGZAEtSvLUz6fCTxtEv5WwrzUHeSY
-      #      scope: openid
-      #      authorization-grant-type: authorization_code
-      #  provider:
-      #    keycloak:
-      #      issuer-uri: http://localhost:8080/realms/ck-localhost
-      #      user-name-attribute: preferred_username
-     # resourceserver:
-       # jwt:
-         # issuer-uri: http://localhost:8080/realms/ck-localhost
-        #  jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
-          #http://localhost:8080/realms/ck-localhost/protocol/openid-connect/certs
-
-logging:
-  level:
-    org:
-      keycloak: debug
-      springframework: info
+application:
+  entity-id: hola
+  encryption-key: hola
+  configurations:
+    - name: 'default-h2'
+      url: 'jdbc:h2:mem:db'
+      driver-class-name: 'org.h2.Driver'
+      userName: 'sa'
+      password: ''
 
 
-
-#keycloak:
-#  realm: ck-localhost
-#  resource: spring-project-client-id
-#  auth-server-url: http://localhost:8080/realms/ck-localhost

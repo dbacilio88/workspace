@@ -10,10 +10,12 @@ spring:
       server:
         git:
           uri: https://github.com/dbacilio88/micoservices-configuration
-          search-paths: tenant-1
+          #search-paths: tenant-1
           default-label: master
           skip-ssl-validation: true
           timeout: 4
+          search-paths:
+            - '{application}'
 
 management:
   endpoint:
