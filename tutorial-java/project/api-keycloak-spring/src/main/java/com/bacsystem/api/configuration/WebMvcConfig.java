@@ -2,9 +2,8 @@ package com.bacsystem.api.configuration;
 
 import com.bacsystem.api.components.interceptors.TenantContextInterceptor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.lang.NonNull;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.reactive.config.EnableWebFlux;
+import org.springframework.web.reactive.config.WebFluxConfigurer;
 
 /**
  * <b>WebMvcConfig</b>
@@ -21,9 +20,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author dbacilio88@outllok.es
  * @since 4/12/2025
  */
-
+@EnableWebFlux
 @Configuration
-public class WebMvcConfig implements WebMvcConfigurer {
+public class WebMvcConfig implements WebFluxConfigurer {
 
     private final TenantContextInterceptor tenantContextInterceptor;
 
@@ -31,9 +30,4 @@ public class WebMvcConfig implements WebMvcConfigurer {
         this.tenantContextInterceptor = tenantContextInterceptor;
     }
 
-
-    @Override
-    public void addInterceptors(@NonNull InterceptorRegistry registry) {
-        registry.addInterceptor(this.tenantContextInterceptor);
-    }
 }

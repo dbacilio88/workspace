@@ -1,11 +1,12 @@
 package com.bacsystem.api.components.interceptors;
 
 import com.bacsystem.api.components.context.TenantContext;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.lang.NonNull;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.server.WebFilter;
+import org.springframework.web.server.WebFilterChain;
+import reactor.core.publisher.Mono;
 
 /**
  * <b>TenantContextInterceptor</b>
@@ -22,16 +23,18 @@ import org.springframework.web.servlet.HandlerInterceptor;
  * @author dbacilio88@outllok.es
  * @since 4/12/2025
  */
-
+@Log4j2
 @Component
-public class TenantContextInterceptor implements HandlerInterceptor {
+public class TenantContextInterceptor implements WebFilter {
 
     public static final String TENANT_HEADER = "X-Tenant-ID";
 
     @Override
-    public boolean preHandle(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull Object handler) throws Exception {
-        var header = request.getHeader(TENANT_HEADER);
-        TenantContext.setTenantId(header);
-        return true;
+    public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+        var tenantId = exchange.getRequest().getHeaders().getFirst(TENANT_HEADER);
+        log.info("Tenant id: {}", tenantId);
+        TenantContext.setTenantId(tenantId);
+        return chain.filter(exchange)
+                .doOnTerminate(TenantContext::clearTenantId);
     }
 }

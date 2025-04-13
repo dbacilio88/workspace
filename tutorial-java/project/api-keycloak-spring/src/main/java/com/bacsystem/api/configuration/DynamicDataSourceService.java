@@ -54,6 +54,7 @@ public class DynamicDataSourceService {
             BeanDefinitionHolder holder = new BeanDefinitionHolder(builder.getBeanDefinition(), dataSourceInformation.getName());
             BeanDefinitionReaderUtils.registerBeanDefinition(holder, beanFactory);
             addNewDataSource(dataSourceInformation);
+            log.info("Registered DataSource cbacilio: {}", holder.getBeanName());
             registerNewDataSourceOnActiveRouting();
             return true;
         }

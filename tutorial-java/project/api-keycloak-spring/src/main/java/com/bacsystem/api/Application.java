@@ -4,12 +4,15 @@ import com.bacsystem.api.components.context.TenantContext;
 import com.bacsystem.api.configuration.ApplicationConfig;
 import com.bacsystem.api.configuration.DataSourceInformation;
 import com.bacsystem.api.configuration.DynamicDataSourceService;
+import io.micrometer.context.ContextRegistry;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.config.ContextLifecycleScheduledTaskRegistrar;
+import reactor.core.publisher.Hooks;
 
 /**
  * <b>Application</b>
@@ -36,9 +39,17 @@ public class Application implements ApplicationRunner {
     private final ApplicationConfig applicationConfig;
 
     public static void main(String[] args) {
+        enablePropagationContext();
         SpringApplication.run(Application.class, args);
+    }
 
-
+    public static void enablePropagationContext() {
+        log.info("Propagation context enabled");
+        Hooks.enableAutomaticContextPropagation();
+        ContextRegistry.getInstance().registerThreadLocalAccessor(
+                "DatasourseId", TenantContext::getTenantId,
+                TenantContext::setTenantId, () -> {
+                });
     }
 
     @Override
@@ -46,14 +57,14 @@ public class Application implements ApplicationRunner {
         if (this.applicationConfig.getConfigurations()
                 .stream()
                 .noneMatch(dataSourceInformation ->
-                        dataSourceInformation.getName().equals("data1"))) {
-            log.warn("Tenant id [{}] not found. Proceed to find configuration", "data1");
+                        dataSourceInformation.getName().equals("default-h2"))) {
+            log.warn("Tenant id [{}] not found. Proceed to find configuration", "default-h2");
 
 
-            log.error("Tenant id [{}] not found.", "data1");
+            log.error("Tenant id [{}] not found.", "default-h2");
 
             var registeredDataSource = this.dynamicDataSourceService.registerDataSource(DataSourceInformation.builder()
-                    .name("data1")
+                    .name("default-h2")
                     .url("jdbc:h2:mem:db")
                     .driverClassName("org.h2.Driver")
                     .password("")
