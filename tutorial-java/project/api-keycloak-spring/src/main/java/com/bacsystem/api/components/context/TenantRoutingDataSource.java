@@ -9,7 +9,9 @@ import reactor.core.publisher.Mono;
 
 import javax.sql.DataSource;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.UnaryOperator;
 
 /**
  * <b>TenantRoutingDataSource</b>
@@ -30,7 +32,9 @@ import java.util.concurrent.ConcurrentHashMap;
 @Log4j2
 public class TenantRoutingDataSource extends AbstractRoutingDataSource {
 
+
     private final Map<String, Mono<DataSource>> resolvedDataSources = new ConcurrentHashMap<>();
+    UnaryOperator<String> functionMapper = a -> a;
 
     @Nullable
     @Override
@@ -45,9 +49,10 @@ public class TenantRoutingDataSource extends AbstractRoutingDataSource {
 
         String tenantId = (String) determineCurrentLookupKey();
         log.info("Tenant id aqui: {}", tenantId);
-        return resolvedDataSources.computeIfAbsent(value-> this.fetchAndCreateDataSourceFromConfigServer(value).doOnTerminate(() -> log.info("DataSource for tenant {} is ready", tenantId)));
+        return Objects.requireNonNull(resolvedDataSources.computeIfAbsent(tenantId, key -> this.fetchAndCreateDataSourceFromConfigServer(tenantId)
+                .doOnTerminate(() -> log.info("DataSource for tenant {} is ready", tenantId))).block());
 
-        return super.determineTargetDataSource();
+
     }
 
     private Mono<DataSource> fetchAndCreateDataSourceFromConfigServer(String tenantId) {
