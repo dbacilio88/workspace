@@ -8,18 +8,18 @@ WORKDIR /workspace
 COPY . .
 
 # build application with native profile
-RUN chmod +x gradlew && ./gradlew nativeCompile
+#RUN chmod +x gradlew && ./gradlew nativeCompile
 
 # Use lightweight image to run the application
-FROM debian:bookworm-slim
+#FROM debian:bookworm-slim
 
 # Set the working directory
-WORKDIR /app
+#WORKDIR /app
 
 # Copy build native imagen from builder stage
-COPY --from=bilder /workspace/build/native/nativeCompile /app/
+#COPY --from=bilder /workspace/build/native/nativeCompile /app/
 
 # Ensure the executable  has the right permissions
-RUN ls /app
+#RUN ls /app
 
-RUN chmod +x /app/demos
+#RUN chmod +x /app/demos
