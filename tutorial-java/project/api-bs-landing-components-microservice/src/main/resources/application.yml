@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: api-bs-landing-components-microservice
+  config:
+    import: ${ENV_CLOUD_CONFIG_SERVER:optional:configserver:http://localhost:8001}
+  cloud:
+    config:
+      name: landing-components
+      profile: ${ENV_CLOUD_CONFIG_PROFILE:default}
+      label: ${ENV_CLOUD_CONFIG_LABEL:master}
+  data:
+    mongodb:
+      port: 27017
+      username: admin
+      password: admin123
+      database: admin
+      host: localhost
+
+
+logging:
+  level:
+    com.bacsystem: info
+    web: info
+    sql: trace
+    org.springframework.data.mongodb: debug
