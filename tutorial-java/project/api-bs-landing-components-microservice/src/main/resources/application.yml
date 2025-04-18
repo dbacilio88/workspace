@@ -8,15 +8,6 @@ spring:
       name: landing-components
       profile: ${ENV_CLOUD_CONFIG_PROFILE:default}
       label: ${ENV_CLOUD_CONFIG_LABEL:master}
-  data:
-    mongodb:
-      port: 27017
-      username: admin
-      password: admin123
-      database: admin
-      host: localhost
-
-
 logging:
   level:
     com.bacsystem: info
