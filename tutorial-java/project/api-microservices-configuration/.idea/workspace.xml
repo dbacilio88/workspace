@@ -5,34 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f668979-5e58-4ba0-8131-88eca1615c32" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/lombok.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/configuration/CacheConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/configuration/MongoConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/services/ReactiveRedisCacheService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/dto/ComponentDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/repositories/IComponentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/repositories/docs/Component.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/services/mapper/IComponentMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/resources/banner.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/resources/i18n/messages-es.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/resources/i18n/messages.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../docker/.env" beforeDir="false" afterPath="$PROJECT_DIR$/../../../docker/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../docker/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../docker/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/base/ApplicationBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/base/ApplicationBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/base/process/ProcessResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/base/process/ProcessResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/constants/LoggerConstant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/constants/MongoConstant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/constants/RedisConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/base/response/ApplicationApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/base/response/ApplicationApiResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/base/response/ServerResponseBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/base/response/ServerResponseBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/base/response/factory/ResponseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/base/response/factory/ResponseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/decorators/HttpRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/decorators/HttpRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/decorators/HttpResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/decorators/HttpResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/interceptors/LoggerInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/interceptors/LoggerInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/properties/MicroserviceProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/properties/MicroserviceProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/services/ReactiveRedisCacheService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/components/services/ReactiveRedisCacheService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/router/handlers/ComponentsHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/router/handlers/ComponentsHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/services/ComponentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/services/ComponentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/services/contracts/IComponentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/java/com/bacsystem/landing/microservice/services/contracts/IComponentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../api-bs-landing-components-microservice/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,12 +38,12 @@
     &quot;assignee&quot;: &quot;dbacilio88&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/dbacilio88/workspace.git&quot;,
-    &quot;accountId&quot;: &quot;11f1af66-ee9e-46f8-85d5-e6ebcf779828&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/dbacilio88/workspace.git",
+    "accountId": "a429013e-9533-4400-aef6-803fbf2916aa"
   }
-}</component>
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -77,31 +59,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.api-microservices-configguration [clean].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/repositories/workspace/tutorial-java/project/api-microservices-configuration/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.44827586&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;spring&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.api-microservices-configguration [clean].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.ConfigServerApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/repositories/workspace/tutorial-java/project/api-microservices-configuration",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.44827586",
+    "settings.editor.selected.configurable": "spring",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\repositories\workspace\tutorial-java\project\api-microservices-configuration\src\main\resources" />
@@ -160,6 +142,7 @@
       <workItem from="1744966130315" duration="923000" />
       <workItem from="1744990099637" duration="721000" />
       <workItem from="1745034126877" duration="1676000" />
+      <workItem from="1745054657839" duration="685000" />
     </task>
     <servers />
   </component>

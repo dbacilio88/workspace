@@ -39,7 +39,7 @@ public class ApplicationApiResponse {
     }
 
     public Mono<ServerResponse> failure(final ResponseBase response, final int code) {
-        return this.responseFactory.service("apiService")
+        return this.responseFactory.service("apiService {}")
                 .flatMap(type -> type.builder(response, code, MediaType.APPLICATION_JSON));
     }
 }

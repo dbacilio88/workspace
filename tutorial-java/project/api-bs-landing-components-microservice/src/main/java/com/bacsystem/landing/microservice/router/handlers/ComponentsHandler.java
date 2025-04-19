@@ -39,7 +39,7 @@ public class ComponentsHandler extends ServerResponseBase {
 
     public Mono<ServerResponse> doOnFindAllExecute(final ServerRequest request) {
         return this.componentService
-                .doOnProcess()
+                .doOnProcess(request)
                 .flatMap(super::success);
     }
 }

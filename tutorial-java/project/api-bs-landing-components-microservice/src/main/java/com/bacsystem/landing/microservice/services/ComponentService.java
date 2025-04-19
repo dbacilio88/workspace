@@ -2,6 +2,9 @@ package com.bacsystem.landing.microservice.services;
 
 import com.bacsystem.landing.microservice.components.base.process.ProcessResponse;
 import com.bacsystem.landing.microservice.components.base.response.GenericResponse;
+import com.bacsystem.landing.microservice.components.constants.LoggerConstant;
+import com.bacsystem.landing.microservice.components.constants.MongoConstant;
+import com.bacsystem.landing.microservice.components.constants.RedisConstant;
 import com.bacsystem.landing.microservice.components.enums.ResponseCode;
 import com.bacsystem.landing.microservice.components.exceptions.ApplicationException;
 import com.bacsystem.landing.microservice.components.services.ReactiveRedisCacheService;
@@ -10,10 +13,13 @@ import com.bacsystem.landing.microservice.services.contracts.IComponentService;
 import com.bacsystem.landing.microservice.services.mapper.IComponentMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.server.ServerRequest;
 import reactor.core.publisher.Mono;
+
+import java.time.Duration;
+import java.util.List;
 
 /**
  * <b>ComponentService</b>
@@ -42,16 +48,19 @@ public class ComponentService implements IComponentService {
 
 
     @Override
-    @Cacheable("components")
-    public Mono<ProcessResponse> doOnProcess() {
-
-        return Mono.defer(() -> this.componentRepository
-                        .findAll(Sort.by(Sort.Direction.DESC, "name"))
+    public Mono<ProcessResponse> doOnProcess(final ServerRequest request) {
+        return this.reactiveRedisCacheService.get(RedisConstant.KEY_MEMORY_COMPONENTS, List.class)
+                .cast(List.class)
+                .map(list -> ProcessResponse.success(new GenericResponse<>(list)))
+                .switchIfEmpty(componentRepository.findAll(Sort.by(Sort.Direction.DESC, MongoConstant.FIELD_MONGO_COMPONENT_NAME))
                         .collectList()
-                        .map(component -> ProcessResponse.success(new GenericResponse<>(componentMapper.toDtoList(component)))))
+                        .map(this.componentMapper::toDtoList)
+                        .flatMap(result -> this.reactiveRedisCacheService.save(RedisConstant.KEY_MEMORY_COMPONENTS, result, Duration.ofSeconds(10), List.class)
+                                .thenReturn(ProcessResponse.success(new GenericResponse<>(result))))
+                )
                 .onErrorResume(throwable -> {
-                    log.error("error processing components {}", throwable.getMessage(), throwable);
-                    return Mono.error(new ApplicationException("error processing", ResponseCode.NOT_FOUND));
+                    log.error(throwable.getMessage(), throwable);
+                    return Mono.error(new ApplicationException(LoggerConstant.LOG_MESSAGE_ERROR_COMPONENTS, ResponseCode.NOT_FOUND));
                 });
     }
 }
