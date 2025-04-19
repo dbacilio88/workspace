@@ -33,17 +33,17 @@ public class ServerResponseBase {
         return Mono.just(processResponse)
                 .flatMap(process -> {
                     if (process.isFailure() && Objects.nonNull(process.getResponse())) {
-                        log.info("response error {}, code [{}] ", process.getResponse(), process.getResponse().getCode());
+                        log.error("response error {}, code [{}] ", process.getResponse(), process.getResponse().getCode());
                         return applicationApiResponse.failure(process.getResponse(), process.getResponseCode().getCode());
                     }
                     if (process.isEmpty()) {
-                        log.info("response empty {}, code [{}] ", process.getResponse(), process.getResponse().getCode());
+                        log.warn("response empty {}, code [{}] ", process.getResponse(), process.getResponse().getCode());
                         return applicationApiResponse.success(process.getResponse(), process.getResponseCode().getCode());
                     }
-                    log.info("response success {}, code [{}] ", process.getResponse(), process.getResponse().getCode());
+                    log.info("process response with code [{}] ", process.getResponse().getCode());
                     return applicationApiResponse.success(process.getResponse(), process.getResponseCode().getCode());
                 })
-                .doOnSuccess(serverResponse -> log.info("response success {}", serverResponse))
+                .doOnSuccess(serverResponse -> log.debug("response success {}", serverResponse))
                 .onErrorResume(throwable -> this.applicationApiResponse.failure(processResponse.getResponse(), 500));
     }
 }

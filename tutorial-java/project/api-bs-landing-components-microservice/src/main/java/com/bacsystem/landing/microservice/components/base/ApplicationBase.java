@@ -1,5 +1,7 @@
 package com.bacsystem.landing.microservice.components.base;
 
+import com.bacsystem.landing.microservice.components.properties.MicroserviceProperties;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
@@ -24,9 +26,18 @@ import org.springframework.lang.NonNull;
 
 @Log4j2
 @Configuration
+@AllArgsConstructor
 public abstract class ApplicationBase implements ApplicationListener<ContextRefreshedEvent> {
+
+    private final MicroserviceProperties microserviceProperties;
+
     @Override
     public void onApplicationEvent(@NonNull ContextRefreshedEvent event) {
+        log.info("************************ MICROSERVICE APP ADMIN CONSOLE ************************************");
+        log.info("Application Name: {}", this.microserviceProperties.getName());
+        log.info("Application Version: {}", this.microserviceProperties.getVersion());
+        log.info("Application Port: {}", this.microserviceProperties.getPort());
+        log.info("Application Path: {}", this.microserviceProperties.getPath());
         log.info("************************ MICROSERVICE APP ADMIN CONSOLE ************************************");
     }
 }

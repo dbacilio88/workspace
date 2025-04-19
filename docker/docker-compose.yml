@@ -69,7 +69,15 @@ services:
     volumes:
       - ${MONGO_VOLUME}
 
-
+  redis:
+    image: redis:latest
+    container_name: ${REDIS_NAME}
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT_CLIENT}
+    volumes:
+      - ${REDIS_VOLUME}
+    networks:
+      - net-local
   server-ftp:
     build:
       context: ssh

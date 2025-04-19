@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: api-bs-landing-components-microservice
   config:
     import: ${ENV_CLOUD_CONFIG_SERVER:optional:configserver:http://localhost:8001}
   cloud:
@@ -8,9 +6,11 @@ spring:
       name: landing-components
       profile: ${ENV_CLOUD_CONFIG_PROFILE:default}
       label: ${ENV_CLOUD_CONFIG_LABEL:master}
-logging:
-  level:
-    com.bacsystem: info
-    web: info
-    sql: trace
-    org.springframework.data.mongodb: debug
+  cache:
+    type:
+    redis:
+      time-to-live: 86400000
+  data:
+    redis:
+      host: localhost
+      port: 6379

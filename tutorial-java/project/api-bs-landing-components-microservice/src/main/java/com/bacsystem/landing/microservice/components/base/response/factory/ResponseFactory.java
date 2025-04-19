@@ -37,9 +37,8 @@ public class ResponseFactory implements IResponseFactory {
 
     @Override
     public Mono<ResponseBuilder> service(String type) {
-        log.info("build {}", type);
         return Mono.fromCallable(() -> beanFactory.getBean(type, ResponseBuilder.class))
-                .doOnSuccess(builder -> log.info("create bean {} success", type))
+                .doOnSuccess(builder -> log.debug("create bean {} success", type))
                 .doOnError(throwable -> log.error("error build {}", throwable.getMessage(), throwable))
                 .onErrorResume(BeansException.class, throwable ->
                         Mono.error(new ApplicationException(String.format("Response type [%s] not found", type), ResponseCode.NOT_FOUND)));

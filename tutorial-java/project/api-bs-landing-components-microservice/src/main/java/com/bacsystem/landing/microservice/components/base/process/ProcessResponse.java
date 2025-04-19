@@ -8,8 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.lang.NonNull;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -28,12 +31,16 @@ import java.util.Objects;
  * @since 4/18/2025
  */
 
+@Log4j2
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ProcessResponse {
+public class ProcessResponse implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 5812033555861176247L;
 
     private ResponseCode responseCode;
     private ResponseBase response;

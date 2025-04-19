@@ -35,12 +35,12 @@ public class LoggerInterceptor implements WebFilter {
     @NonNull
     @Override
     public Mono<Void> filter(@NonNull ServerWebExchange exchange, @NonNull WebFilterChain chain) {
-        log.info("pre request {} ", exchange.getRequest());
+        log.debug("pre request {} ", exchange.getRequest());
 
         if (Boolean.TRUE.equals(CommonLoggerInterceptor.doOnValidateHealthEndPoint.apply(exchange))) {
             return chain.filter(exchange.mutate().build());
         }
-        log.info("post request {} ", exchange.getRequest().getPath().contextPath());
+        log.debug("post request {} ", exchange.getRequest().getPath().contextPath());
         return chain.filter(
                         exchange.mutate()
                                 .request(new HttpRequest(exchange.getRequest()))

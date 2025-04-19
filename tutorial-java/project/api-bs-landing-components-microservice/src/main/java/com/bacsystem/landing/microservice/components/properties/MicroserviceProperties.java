@@ -31,6 +31,6 @@ public class MicroserviceProperties {
     private String port;
     @Value("${spring.webflux.base-path:path not available}")
     private String path;
-    @Value("${version:version not available}")
+    @Value("${spring.application.version:version not available}")
     private String version;
 }

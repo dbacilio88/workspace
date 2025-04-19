@@ -28,13 +28,12 @@ import reactor.core.publisher.Flux;
 public class HttpRequest extends ServerHttpRequestDecorator {
     public HttpRequest(ServerHttpRequest delegate) {
         super(delegate);
-        log.info("HttpRequestDecorator");
     }
 
     @NonNull
     @Override
     public Flux<DataBuffer> getBody() {
-        log.info("Request from {} ", super.getPath());
+        log.debug("Request from {} ", super.getPath());
         return super.getBody();
     }
 }
